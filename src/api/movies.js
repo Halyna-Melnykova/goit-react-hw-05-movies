@@ -19,6 +19,15 @@ export const fetchTrending = async () => {
   return data;
 };
 
+export const fetchMovieInfo = async movieId => {
+  const { data } = await axios.get(
+    `${BASE_URL}movie/${movieId}?api_key=${KEY}&language=en-US`
+  );
+  return data;
+};
+
+// https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
+
 // fetch(
 //   'https://api.themoviedb.org/3/trending/all/day?api_key=163c321dbb11d99503a707d857a1af3f'
 // );

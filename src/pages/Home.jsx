@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchTrending } from '../api/movies';
 
 const Home = () => {
@@ -26,8 +27,10 @@ const Home = () => {
     <div>
       <h1>Trending today</h1>
       <ul>
-        {movies.map(({ id, title }) => (
-          <li key={id}>{title}</li>
+        {movies.map(({ id, title, poster_path }) => (
+          <li key={id}>
+            <Link to={`/movies/${id}`}>{title}</Link>
+          </li>
         ))}
       </ul>
       {loading && <p>Loading...</p>}
