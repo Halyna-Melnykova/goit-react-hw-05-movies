@@ -19,12 +19,21 @@ export const getTrending = async () => {
   return data;
 };
 
-export const fetchMovieInfo = async movieId => {
+export const getMovieInfo = async movieId => {
   const { data } = await axios.get(
     `${BASE_URL}movie/${movieId}?api_key=${KEY}&language=en-US`
   );
   return data;
 };
+
+export const getActors = async movieId => {
+  const { data } = await axios.get(
+    `${BASE_URL}movie/${movieId}/credits?api_key=${KEY}&language=en-US`
+  );
+  return data;
+};
+
+// https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
 
 // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 
