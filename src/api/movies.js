@@ -33,13 +33,12 @@ export const getActors = async movieId => {
   return data;
 };
 
-// https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
-
-// https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-
-// fetch(
-//   'https://api.themoviedb.org/3/trending/all/day?api_key=163c321dbb11d99503a707d857a1af3f'
-// );
+export const getReviews = async movieId => {
+  const { data } = await axios.get(
+    `${BASE_URL}movie/${movieId}/reviews?api_key=${KEY}&language=en-US`
+  );
+  return data;
+};
 
 // export const searchPhotos = async (q, page = 1) => {
 //     const { data } = await instance.get('/', {

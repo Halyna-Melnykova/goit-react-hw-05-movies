@@ -15,7 +15,6 @@ const Cast = () => {
       try {
         const data = await getActors(movieId);
         setActors([...data.cast]);
-        console.log(data);
       } catch (error) {
         setError(error);
       } finally {

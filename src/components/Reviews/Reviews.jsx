@@ -1,7 +1,44 @@
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getReviews } from '../../api/movies';
+
 const Reviews = () => {
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const { movieId } = useParams();
+
+  useEffect(() => {
+    async function fetchActors() {
+      setLoading(true);
+      try {
+        const data = await getReviews(movieId);
+        setReviews([...data.results]);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchActors();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [movieId]);
+
   return (
     <div>
-      <p>We don't have any review for this movie.</p>
+      {loading && <p>Loading...</p>}
+      {error && <p>Erorr</p>}
+      <ul>
+        {reviews
+          ? reviews.map(({ id, author, content }) => (
+              <li key={id}>
+                <p>Author: {author}</p>
+                <p>{content}</p>
+              </li>
+            ))
+          : `We don't have any review for this movie.`}
+      </ul>
     </div>
   );
 };

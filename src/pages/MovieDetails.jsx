@@ -11,15 +11,12 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
 
-  // console.log(movieId);
-
   useEffect(() => {
     async function fetchMovieById() {
       setLoading(true);
       try {
         const data = await getMovieInfo(movieId);
         setMovie({ ...data });
-        // console.log(data);
       } catch (error) {
         setError(error);
       } finally {
@@ -29,7 +26,6 @@ const MovieDetails = () => {
     fetchMovieById();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movieId]);
-  // console.log(movie);
 
   const goBack = () => navigate(-1);
 
@@ -82,9 +78,3 @@ const MovieDetails = () => {
 };
 
 export default MovieDetails;
-
-// src={
-//   profile_path
-//     ? `https://image.tmdb.org/t/p/original/${profile_path}`
-//     : `https://static.vecteezy.com/system/resources/previews/003/393/235/original/error-404-with-the-cute-floppy-disk-mascot-free-vector.jpg`
-// }
