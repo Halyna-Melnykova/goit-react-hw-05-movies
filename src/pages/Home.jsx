@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchTrending } from '../api/movies';
+import { getTrending } from '../api/movies';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -13,7 +13,7 @@ const Home = () => {
     async function fetchMovies() {
       setLoading(true);
       try {
-        const data = await fetchTrending();
+        const data = await getTrending();
         setMovies([...data.results]);
       } catch (error) {
         setError(error);
@@ -24,7 +24,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <main>
       <h1>Trending today</h1>
       <ul>
         {movies.map(({ id, title }) => (
@@ -35,7 +35,7 @@ const Home = () => {
       </ul>
       {loading && <p>Loading...</p>}
       {error && <p>Erorr</p>}
-    </div>
+    </main>
   );
 };
 
