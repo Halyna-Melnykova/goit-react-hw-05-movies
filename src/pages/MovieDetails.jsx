@@ -4,7 +4,7 @@ import { fetchMovieInfo } from '../api/movies';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const { movie, setMovie } = useState(null);
+  const [movie, setMovie] = useState({});
 
   console.log(movieId);
 
@@ -14,7 +14,8 @@ const MovieDetails = () => {
     async function fetchMovieById() {
       try {
         const data = await fetchMovieInfo(movieId);
-        setMovie(data);
+        setMovie({ ...data });
+        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -24,15 +25,19 @@ const MovieDetails = () => {
   console.log(movie);
   return (
     <div>
-      <p>Movie</p>
-      {movie && (
-        <>
-          <img src={movie.poster_path} alt="poster" />
-          <h2>{movie.title}</h2>
-        </>
-      )}
+      <img src={movie.poster_path} alt="poster" />
+      <h2>{movie.title}</h2>
+      <p>{movie.overview}</p>
+      <ul>
+        {movie.genres.map(({ id, name }) => (
+          <li key={id}>{name}</li>
+        ))}
+      </ul>
     </div>
   );
 };
 
 export default MovieDetails;
+
+// const { poster_path, title, overview, genres, release_date, vote_average } =
+//   movieDetails;

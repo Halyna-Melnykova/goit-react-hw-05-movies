@@ -27,7 +27,7 @@ const Home = () => {
     <div>
       <h1>Trending today</h1>
       <ul>
-        {movies.map(({ id, title, poster_path }) => (
+        {movies.map(({ id, title }) => (
           <li key={id}>
             <Link to={`/movies/${id}`}>{title}</Link>
           </li>
