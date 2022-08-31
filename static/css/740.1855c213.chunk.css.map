@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/740.1855c213.chunk.css","mappings":"AAAA,oBAGE,wBAA2B,CAD3B,cAAe,CADf,eAGF,CACA,oDAEE,wBACF","sources":["components/Form/Form.module.css"],"sourcesContent":[".button {\n  padding: 2px 5px;\n  cursor: pointer;\n  border: 1px solid lightgray;\n}\n.button:hover,\n.button:focus {\n  background-color: lightblue;\n}\n"],"names":[],"sourceRoot":""}
