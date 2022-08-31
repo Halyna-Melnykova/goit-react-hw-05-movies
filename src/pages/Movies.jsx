@@ -1,8 +1,47 @@
+import { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import Form from '../components/Form/Form';
+import { getMovieByQuery } from '../api/movies';
+
 const Movies = () => {
+  const [state, setState] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('query');
+  console.log(search);
+
+  const onSearch = search => setSearchParams({ query: search });
+
+  useEffect(() => {
+    if (search) {
+      fetchMovies();
+    }
+
+    async function fetchMovies() {
+      setLoading(true);
+      try {
+        const data = await getMovieByQuery(search);
+        setState(data.results);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  }, [search]);
+
   return (
     <div>
-      <p>1 Movie</p>
-      <p>2 Movie</p>
+      <Form onSubmit={onSearch} />
+      {loading && <p>Loading...</p>}
+      {error && <p>Erorr</p>}
+      <ul>
+        {state.map(({ id, title }) => (
+          <li key={id}>{<Link to={`/movies`}>{title}</Link>}</li>
+        ))}
+      </ul>
     </div>
   );
 };

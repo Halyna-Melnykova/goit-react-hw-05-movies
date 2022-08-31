@@ -16,7 +16,7 @@ const MovieDetails = () => {
       setLoading(true);
       try {
         const data = await getMovieInfo(movieId);
-        setMovie({ ...data });
+        setMovie(data);
       } catch (error) {
         setError(error);
       } finally {

@@ -40,6 +40,14 @@ export const getReviews = async movieId => {
   return data;
 };
 
+export const getMovieByQuery = async query => {
+  const { data } = await axios.get(
+    `${BASE_URL}search/movie?api_key=${KEY}&query=${query}&language=en-US`
+  );
+  return data;
+};
+// https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
+
 // export const searchPhotos = async (q, page = 1) => {
 //     const { data } = await instance.get('/', {
 //       params: {
