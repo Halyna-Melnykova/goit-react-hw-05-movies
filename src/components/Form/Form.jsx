@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import s from './Form.module.css';
 
 const Form = ({ onSubmit }) => {
   const [search, setSearch] = useState('');
@@ -26,9 +28,15 @@ const Form = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input name="search" value={search} onChange={handleChange} type="text" />
-      <button type="submit">Search</button>
+      <button className={s.button} type="submit">
+        Search
+      </button>
     </form>
   );
 };
 
 export default Form;
+
+Form.propTypes = {
+  onSubmit: PropTypes.func,
+};

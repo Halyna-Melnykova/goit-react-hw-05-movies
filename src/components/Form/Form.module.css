@@ -1,0 +1,9 @@
+.button {
+  padding: 2px 5px;
+  cursor: pointer;
+  border: 1px solid lightgray;
+}
+.button:hover,
+.button:focus {
+  background-color: lightblue;
+}

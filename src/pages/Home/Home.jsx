@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getTrending } from '../api/movies';
+import { getTrending } from '../../api/movies';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -34,7 +34,7 @@ const Home = () => {
         ))}
       </ul>
       {loading && <p>Loading...</p>}
-      {error && <p>Erorr</p>}
+      {error && <p>Page loading error</p>}
     </main>
   );
 };

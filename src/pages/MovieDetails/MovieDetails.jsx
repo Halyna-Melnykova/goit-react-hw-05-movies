@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { Suspense } from 'react';
 import { useParams, useNavigate, Link, Outlet } from 'react-router-dom';
-import { getMovieInfo } from '../api/movies';
+import { getMovieInfo } from '../../api/movies';
 import Button from 'components/Button/Button';
+import s from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState({});
@@ -40,10 +42,10 @@ const MovieDetails = () => {
   return (
     <main>
       {loading && <p>Loading...</p>}
-      {error && <p>Erorr</p>}
+      {error && <p>Data loading error</p>}
       {isMovie && <Button goBack={goBack} />}
       {isMovie && (
-        <div>
+        <div className={s.wrapper}>
           {poster_path && (
             <img
               className="image"
@@ -51,28 +53,39 @@ const MovieDetails = () => {
               alt="poster"
             />
           )}
-          <h2>
-            {title} ({year})
-          </h2>
-          <p>User Score: {score}%</p>
-          <p>{overview}</p>
-          <ul>
-            {genres && genres.map(({ id, name }) => <li key={id}>{name}</li>)}
-          </ul>
+          <div className={s.info}>
+            <h2>
+              {title} ({year})
+            </h2>
+            <p>User Score: {score}%</p>
+            <h3>Overview</h3>
+            <p>{overview}</p>
+            <h3>Genres</h3>
+            <ul className={s.genres}>
+              {genres &&
+                genres.map(({ id, name }) => (
+                  <li className={s.genre} key={id}>
+                    {name}
+                  </li>
+                ))}
+            </ul>
+          </div>
         </div>
       )}
-      <div>
+      <div className={s.addInfo}>
         <h3>Additional information</h3>
+        <ul>
+          <li>
+            <Link to="cast">Cast</Link>
+          </li>
+          <li>
+            <Link to="reviews">Reviews</Link>
+          </li>
+        </ul>
       </div>
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
-      <Outlet />
+      <Suspense fallback={<div>Loading subpage...</div>}>
+        <Outlet />
+      </Suspense>
     </main>
   );
 };

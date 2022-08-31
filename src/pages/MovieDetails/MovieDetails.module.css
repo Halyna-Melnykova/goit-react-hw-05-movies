@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  padding: 5px;
+  box-shadow: 0 4px 2px -2px gray;
+}
+.info {
+  margin-left: 15px;
+}
+.genres {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.genre {
+  margin-right: 8px;
+}
+.addInfo {
+  padding: 5px;
+  box-shadow: 0 4px 2px -2px gray;
+}

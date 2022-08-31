@@ -1,6 +1,24 @@
 .button {
   display: inline-block;
+  text-align: center;
   padding: 5px 10px;
+  margin-bottom: 5px;
   cursor: pointer;
-  border: none;
+  border: 1px solid lightgray;
 }
+.button:hover,
+.button:focus {
+  background-color: lightblue;
+}
+.arrow {
+  vertical-align: center;
+}
+
+/* display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 0;
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  text-transform: uppercase; */

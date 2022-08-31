@@ -1,44 +1,35 @@
 import axios from 'axios';
 
-// https://api.themoviedb.org/3/movie/76341?api_key=<<api_key>>
-
-// const instance = axios.create({
-//   baseURL: 'https://api.themoviedb.org/3/trending/movie/day',
-//   params: {
-//     api_key: '163c321dbb11d99503a707d857a1af3f',
-//   },
-// });
-
-const BASE_URL = 'https://api.themoviedb.org/3/';
-const KEY = '163c321dbb11d99503a707d857a1af3f';
+const instance = axios.create({
+  baseURL: 'https://api.themoviedb.org/3/',
+  params: {
+    api_key: '163c321dbb11d99503a707d857a1af3f',
+  },
+});
 
 export const getTrending = async () => {
-  const { data } = await axios.get(
-    `${BASE_URL}trending/movie/day?api_key=${KEY}`
-  );
+  const { data } = await instance.get('/trending/movie/day');
   return data;
 };
 
 export const getMovieInfo = async movieId => {
-  const { data } = await axios.get(
-    `${BASE_URL}movie/${movieId}?api_key=${KEY}&language=en-US`
-  );
+  const { data } = await instance.get(`/movie/${movieId}`);
   return data;
 };
 
 export const getActors = async movieId => {
-  const { data } = await axios.get(
-    `${BASE_URL}movie/${movieId}/credits?api_key=${KEY}&language=en-US`
-  );
+  const { data } = await instance.get(`movie/${movieId}/credits`);
   return data;
 };
 
 export const getReviews = async movieId => {
-  const { data } = await axios.get(
-    `${BASE_URL}movie/${movieId}/reviews?api_key=${KEY}&language=en-US`
-  );
+  const { data } = await instance.get(`movie/${movieId}/reviews`);
   return data;
 };
+
+// search
+const BASE_URL = 'https://api.themoviedb.org/3/';
+const KEY = '163c321dbb11d99503a707d857a1af3f';
 
 export const getMovieByQuery = async query => {
   const { data } = await axios.get(
@@ -46,14 +37,3 @@ export const getMovieByQuery = async query => {
   );
   return data;
 };
-// https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
-
-// export const searchPhotos = async (q, page = 1) => {
-//     const { data } = await instance.get('/', {
-//       params: {
-//         page,
-//         q,
-//       },
-//     });
-//     return data;
-//   };
