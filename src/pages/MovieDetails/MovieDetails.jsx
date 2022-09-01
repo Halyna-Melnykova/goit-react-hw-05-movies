@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Suspense } from 'react';
-import { useParams, useNavigate, Link, Outlet } from 'react-router-dom';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { getMovieInfo } from '../../api/movies';
-import Button from 'components/Button/Button';
+// import Button from 'components/Button/Button';
 import s from './MovieDetails.module.css';
 
 const MovieDetails = () => {
@@ -11,7 +12,11 @@ const MovieDetails = () => {
   const [error, setError] = useState(null);
 
   const { movieId } = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
+  const location = useLocation();
+  console.log(location.state);
+  const backLinkHref = location.state?.from ?? '/home';
 
   useEffect(() => {
     async function fetchMovieById() {
@@ -28,7 +33,7 @@ const MovieDetails = () => {
     fetchMovieById();
   }, [movieId]);
 
-  const goBack = () => navigate('/');
+  // const goBack = () => navigate('/');
   // const goBack = () => navigate(-1);
 
   const isMovie = Object.keys(movie).length > 0;
@@ -43,7 +48,13 @@ const MovieDetails = () => {
     <main>
       {loading && <p>Loading...</p>}
       {error && <p>Data loading error</p>}
-      {isMovie && <Button goBack={goBack} />}
+      {/* {isMovie && <Button goBack={goBack} />} */}
+
+      {isMovie && (
+        <Link to={backLinkHref} className={s.link}>
+          Go back
+        </Link>
+      )}
       {isMovie && (
         <div className={s.wrapper}>
           {poster_path && (
@@ -76,10 +87,15 @@ const MovieDetails = () => {
         <h3>Additional information</h3>
         <ul>
           <li>
-            <Link to="cast">Cast</Link>
+            {/* <Link to="cast">Cast</Link> */}
+            <Link to="cast" state={{ from: location.pathname }}>
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to="reviews">Reviews</Link>
+            <Link to="reviews" state={{ from: location.pathname }}>
+              Reviews
+            </Link>
           </li>
         </ul>
       </div>
