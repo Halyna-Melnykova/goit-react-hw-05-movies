@@ -8,12 +8,12 @@ const instance = axios.create({
 });
 
 export const getTrending = async () => {
-  const { data } = await instance.get('/trending/movie/day');
+  const { data } = await instance.get('trending/movie/day');
   return data;
 };
 
 export const getMovieInfo = async movieId => {
-  const { data } = await instance.get(`/movie/${movieId}`);
+  const { data } = await instance.get(`movie/${movieId}`);
   return data;
 };
 
@@ -26,6 +26,13 @@ export const getReviews = async movieId => {
   const { data } = await instance.get(`movie/${movieId}/reviews`);
   return data;
 };
+
+// export const getMovieByQuery = async query => {
+//   const { data } = await instance.get('search/movie', {
+//     query,
+//   });
+//   return data;
+// };
 
 // search
 const BASE_URL = 'https://api.themoviedb.org/3/';

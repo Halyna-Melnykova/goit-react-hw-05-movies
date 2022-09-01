@@ -6,7 +6,7 @@ import s from './Button.module.css';
 const Button = ({ goBack }) => {
   return (
     <button onClick={goBack} className={s.button} type="button">
-      <IoIosArrowRoundBack className={s.arrow} /> Go back
+      <IoIosArrowRoundBack /> Go back
     </button>
   );
 };

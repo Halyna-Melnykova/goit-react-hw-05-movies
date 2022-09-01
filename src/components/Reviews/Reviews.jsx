@@ -22,15 +22,16 @@ const Reviews = () => {
       }
     }
     fetchActors();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movieId]);
+
+  const isReview = Object.keys(reviews).length > 0;
 
   return (
     <div>
       {loading && <p>Loading...</p>}
       {error && <p>Erorr</p>}
       <ul>
-        {reviews
+        {isReview
           ? reviews.map(({ id, author, content }) => (
               <li key={id}>
                 <p>Author: {author}</p>

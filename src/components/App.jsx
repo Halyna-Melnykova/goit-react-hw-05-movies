@@ -8,13 +8,9 @@ const Navigation = lazy(() => import('./Navigation/Navigation'));
 const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 
-// import Home from '../pages/Home/Home';
-// import Movies from '../pages/Movies/Movies';
-// import NotFound from '../pages/NotFound';
-// import MovieDetails from '../pages/MovieDetails/MovieDetails';
-// import Navigation from './Navigation/Navigation';
-// import Cast from './Cast/Cast';
-// import Reviews from './Reviews/Reviews';
+// "homepage": "https://Halyna-Melnykova.github.io/"
+// http://localhost:3000/goit-react-hw-05-movies  => // http://localhost:3000
+// const NotFound = lazy(() => import('../pages/NotFound'));
 
 export const App = () => {
   return (

@@ -26,10 +26,10 @@ const MovieDetails = () => {
       }
     }
     fetchMovieById();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movieId]);
 
-  const goBack = () => navigate(-1);
+  const goBack = () => navigate('/');
+  // const goBack = () => navigate(-1);
 
   const isMovie = Object.keys(movie).length > 0;
 
