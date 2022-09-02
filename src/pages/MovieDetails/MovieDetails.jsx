@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Suspense } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 import { getMovieInfo } from '../../api/movies';
@@ -99,9 +98,7 @@ const MovieDetails = () => {
           </li>
         </ul>
       </div>
-      <Suspense fallback={<div>Loading subpage...</div>}>
-        <Outlet />
-      </Suspense>
+      <Outlet />
     </main>
   );
 };
